@@ -119,16 +119,26 @@ document.addEventListener('DOMContentLoaded', function () {
         const boardName = boardNameInput.value;
         const boardDescription = boardDescriptionInput.value;
         
+        console.log('Updating board info:');
+        console.log('Board Name:', boardName);
+        console.log('Board Description:', boardDescription);
+        
         // Update board title
         const boardTitle = document.getElementById('board-title');
         if (boardTitle) {
             boardTitle.textContent = boardName;
+            console.log('Updated board title');
+        } else {
+            console.error('Board title element not found');
         }
         
         // Update board description
         const boardDesc = document.getElementById('board-description');
         if (boardDesc) {
             boardDesc.textContent = boardDescription;
+            console.log('Updated board description');
+        } else {
+            console.error('Board description element not found');
         }
     }
 
@@ -140,11 +150,18 @@ document.addEventListener('DOMContentLoaded', function () {
         boardDescription.textContent = boardDescriptionInput.value;
     }
 
-    boardNameInput.addEventListener('input', updateAll);
-    boardDescriptionInput.addEventListener('input', updateAll);
+    boardNameInput.addEventListener('input', function() {
+        console.log('Board name input event triggered');
+        updateAll();
+    });
+    boardDescriptionInput.addEventListener('input', function() {
+        console.log('Board description input event triggered');
+        updateAll();
+    });
 
     // Call updateBoardInfo when updating styles
     function updateAll() {
+        console.log('updateAll function called');
         updateStyles();
         updateBoardInfo();
     }
