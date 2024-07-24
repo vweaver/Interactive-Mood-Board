@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
 
+        // Update button colors
+        document.getElementById('primary-button').style.backgroundColor = colorInputs[0].color.value;
+        document.getElementById('secondary-button').style.backgroundColor = colorInputs[1].color.value;
+        document.getElementById('outline-button').style.borderColor = colorInputs[0].color.value;
+        document.getElementById('outline-button').style.color = colorInputs[0].color.value;
+
+        // Keep the sample button using primary color
         sampleButton.style.backgroundColor = colorInputs[0].color.value;
         sampleButton.style.color = colorInputs[4].color.value;
 
