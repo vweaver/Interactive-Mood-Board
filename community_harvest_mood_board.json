@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "primary": "#3b82f6",
+    "secondary": "#f97316",
+    "background": "#e5e7eb",
+    "link": "#f97316",
+    "text": "#374151",
+    "darkBackground": "#333333"
+  },
+  "fontFamily": "'Montserrat', sans-serif",
+  "boardName": "Community Harvest",
+  "boardDescription": "This is a mood board for the upcoming Community Harvest website"
+}
