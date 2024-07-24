@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const boardDescriptionInput = document.getElementById('board-description');
     const boardNameDisplay = document.querySelector('.bg-white h2');
     const boardDescriptionDisplay = document.getElementById('sample-text');
+    const topLeftBoardName = document.querySelector('.grid-cols-3 .bg-white h2');
+    const topLeftBoardDescription = document.querySelector('.grid-cols-3 .bg-white p');
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].color.value;
@@ -101,8 +103,16 @@ document.addEventListener('DOMContentLoaded', function () {
     updateStyles();
 
     function updateBoardInfo() {
-        boardNameDisplay.textContent = boardNameInput.value;
-        boardDescriptionDisplay.textContent = boardDescriptionInput.value;
+        const boardName = boardNameInput.value;
+        const boardDescription = boardDescriptionInput.value;
+        
+        // Update the main board name and description
+        boardNameDisplay.textContent = boardName;
+        boardDescriptionDisplay.textContent = boardDescription;
+        
+        // Update the top left section
+        topLeftBoardName.textContent = boardName;
+        topLeftBoardDescription.textContent = boardDescription;
     }
 
     boardNameInput.addEventListener('input', updateBoardInfo);
