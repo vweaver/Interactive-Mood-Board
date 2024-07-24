@@ -125,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function () {
     exportButton.addEventListener('click', exportSettings);
     importButton.addEventListener('click', () => importInput.click());
     importInput.addEventListener('change', importSettings);
+    importButton.addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', importSettings);
 
     function applyImportedSettings(settings) {
         // Apply color settings
@@ -145,9 +147,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Update all styles and info
         updateAll();
     }
-
-    importButton.addEventListener('click', () => importInput.click());
-    importInput.addEventListener('change', importSettings);
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].text.value;
