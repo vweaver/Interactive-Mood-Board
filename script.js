@@ -130,13 +130,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    boardNameInput.addEventListener('input', updateBoardInfo);
-    boardDescriptionInput.addEventListener('input', updateBoardInfo);
+    function updateBoardDetails() {
+        const boardTitle = document.getElementById('board-title');
+        const boardDescription = document.getElementById('board-description');
+        
+        boardTitle.textContent = boardNameInput.value;
+        boardDescription.textContent = boardDescriptionInput.value;
+    }
 
-    // Call updateBoardInfo when updating styles
+    boardNameInput.addEventListener('input', () => {
+        updateBoardInfo();
+        updateBoardDetails();
+    });
+    boardDescriptionInput.addEventListener('input', () => {
+        updateBoardInfo();
+        updateBoardDetails();
+    });
+
+    // Call updateBoardInfo and updateBoardDetails when updating styles
     function updateAll() {
         updateStyles();
         updateBoardInfo();
+        updateBoardDetails();
     }
 
     // Replace updateStyles with updateAll in all event listeners
