@@ -1,0 +1,70 @@
+:root {
+    --primary-color: #ff4b01;
+    --secondary-color: #faa000;
+    --font-family: Arial, sans-serif;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.controls {
+    width: 250px;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.mood-board {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.control-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="color"], select {
+    width: 100%;
+}
+
+.color-sample {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.primary-color {
+    background-color: var(--primary-color);
+}
+
+.secondary-color {
+    background-color: var(--secondary-color);
+}
+
+.sample-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.sample-button:hover {
+    background-color: var(--secondary-color);
+}

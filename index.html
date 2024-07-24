@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mood Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <h2>Controls</h2>
+            <div class="control-group">
+                <label for="primary-color">Primary Color:</label>
+                <input type="color" id="primary-color" value="#ff4b01">
+            </div>
+            <div class="control-group">
+                <label for="secondary-color">Secondary Color:</label>
+                <input type="color" id="secondary-color" value="#faa000">
+            </div>
+            <div class="control-group">
+                <label for="font-family">Font Family:</label>
+                <select id="font-family">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="'Times New Roman', serif">Times New Roman</option>
+                    <option value="'Courier New', monospace">Courier New</option>
+                </select>
+            </div>
+        </div>
+        <div class="mood-board">
+            <h1>Interactive Mood Board</h1>
+            <div class="color-sample primary-color">Primary Color</div>
+            <div class="color-sample secondary-color">Secondary Color</div>
+            <p class="sample-text">This is a sample paragraph to demonstrate the chosen font.</p>
+            <button class="sample-button">Sample Button</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
