@@ -93,26 +93,36 @@ document.addEventListener('DOMContentLoaded', function () {
         input.color.addEventListener('input', () => {
             updateTextInput(input.color, input.text);
             updateStyles();
+            updateBoardInfo();
         });
-        input.text.addEventListener('input', () => updateColorInput(input.color, input.text));
+        input.text.addEventListener('input', () => {
+            updateColorInput(input.color, input.text);
+            updateBoardInfo();
+        });
     });
 
-    fontFamilySelect.addEventListener('change', updateStyles);
+    fontFamilySelect.addEventListener('change', () => {
+        updateStyles();
+        updateBoardInfo();
+    });
 
     // Initial update
     updateStyles();
+    updateBoardInfo();
 
     function updateBoardInfo() {
         const boardName = boardNameInput.value;
         const boardDescription = boardDescriptionInput.value;
         
-        // Update the main board name and description
-        boardNameDisplay.textContent = boardName;
-        boardDescriptionDisplay.textContent = boardDescription;
+        // Update all instances of board name
+        document.querySelectorAll('.board-name').forEach(el => {
+            el.textContent = boardName;
+        });
         
-        // Update the top left section
-        topLeftBoardName.textContent = boardName;
-        topLeftBoardDescription.textContent = boardDescription;
+        // Update all instances of board description
+        document.querySelectorAll('.board-description').forEach(el => {
+            el.textContent = boardDescription;
+        });
     }
 
     boardNameInput.addEventListener('input', updateBoardInfo);
