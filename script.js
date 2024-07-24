@@ -41,18 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateColorSwatches() {
-        colorInputs.forEach(input => {
+        colorInputs.forEach((input, index) => {
             input.swatch.style.backgroundColor = input.text.value;
-        });
-
-        // Update mood board swatches
-        ['primary', 'secondary', 'light-bg', 'text'].forEach((id, index) => {
+        
+            // Update mood board swatches
+            const id = ['primary', 'secondary', 'light-bg', 'text', 'link', 'dark-bg'][index];
             const swatch = document.getElementById(`${id}-swatch`);
             const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
             if (swatch && hex) {
-                const colorValue = colorInputs[index === 3 ? 4 : index].text.value;
-                swatch.style.backgroundColor = colorValue;
-                hex.textContent = colorValue;
+                swatch.style.backgroundColor = input.text.value;
+                hex.textContent = input.text.value;
             }
         });
     }
