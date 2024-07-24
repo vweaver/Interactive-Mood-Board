@@ -129,9 +129,13 @@ document.addEventListener('DOMContentLoaded', function () {
         body.style.color = colorInputs[4].text.value;
         body.style.fontFamily = fontFamilySelect.value;
 
-        colorInputs[0].sample.style.backgroundColor = colorInputs[0].text.value;
-        colorInputs[1].sample.style.backgroundColor = colorInputs[1].text.value;
-        colorInputs[1].sample.style.color = colorInputs[4].text.value;
+        if (colorInputs[0].sample) {
+            colorInputs[0].sample.style.backgroundColor = colorInputs[0].text.value;
+        }
+        if (colorInputs[1].sample) {
+            colorInputs[1].sample.style.backgroundColor = colorInputs[1].text.value;
+            colorInputs[1].sample.style.color = colorInputs[4].text.value;
+        }
 
         const darkBgSection = document.getElementById('dark-bg-section');
         const primaryOnDarkSample = document.getElementById('primary-on-dark-sample');
