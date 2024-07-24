@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const colorInputs = [
-        { color: document.getElementById('primary-color'), text: document.getElementById('primary-color-text'), sample: document.getElementById('primary-color-sample') },
-        { color: document.getElementById('secondary-color'), text: document.getElementById('secondary-color-text'), sample: document.getElementById('secondary-color-sample') },
-        { color: document.getElementById('background-color'), text: document.getElementById('background-color-text') },
-        { color: document.getElementById('link-color'), text: document.getElementById('link-color-text') },
-        { color: document.getElementById('text-color'), text: document.getElementById('text-color-text') },
-        { color: document.getElementById('dark-background-color'), text: document.getElementById('dark-background-color-text') }
+        { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), sample: document.getElementById('primary-color-sample') },
+        { swatch: document.getElementById('secondary-color-swatch'), text: document.getElementById('secondary-color-text'), sample: document.getElementById('secondary-color-sample') },
+        { swatch: document.getElementById('background-color-swatch'), text: document.getElementById('background-color-text') },
+        { swatch: document.getElementById('link-color-swatch'), text: document.getElementById('link-color-text') },
+        { swatch: document.getElementById('text-color-swatch'), text: document.getElementById('text-color-text') },
+        { swatch: document.getElementById('dark-background-color-swatch'), text: document.getElementById('dark-background-color-text') }
     ];
     const fontFamilySelect = document.getElementById('font-family');
     const body = document.body;
@@ -13,31 +13,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const boardDescriptionInput = document.getElementById('board-description-control');
 
     function updateStyles() {
-        body.style.backgroundColor = colorInputs[2].color.value;
-        body.style.color = colorInputs[4].color.value;
+        body.style.backgroundColor = colorInputs[2].text.value;
+        body.style.color = colorInputs[4].text.value;
         body.style.fontFamily = fontFamilySelect.value;
 
-        colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
-        colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
-        colorInputs[1].sample.style.color = colorInputs[4].color.value;
+        colorInputs[0].sample.style.backgroundColor = colorInputs[0].text.value;
+        colorInputs[1].sample.style.backgroundColor = colorInputs[1].text.value;
+        colorInputs[1].sample.style.color = colorInputs[4].text.value;
 
         const darkBgSection = document.getElementById('dark-bg-section');
         if (darkBgSection) {
-            darkBgSection.style.backgroundColor = colorInputs[5].color.value;
+            darkBgSection.style.backgroundColor = colorInputs[5].text.value;
         }
 
         // Apply dark background color to navbar and footer
         const navbar = document.querySelector('nav');
         const footer = document.querySelector('footer');
-        if (navbar) navbar.style.backgroundColor = colorInputs[5].color.value;
-        if (footer) footer.style.backgroundColor = colorInputs[5].color.value;
+        if (navbar) navbar.style.backgroundColor = colorInputs[5].text.value;
+        if (footer) footer.style.backgroundColor = colorInputs[5].text.value;
 
         document.querySelectorAll('a').forEach(link => {
-            link.style.color = colorInputs[3].color.value;
+            link.style.color = colorInputs[3].text.value;
         });
 
         updateColorSwatches();
         updateButtons();
+    }
+
+    function updateColorSwatches() {
+        colorInputs.forEach(input => {
+            input.swatch.style.backgroundColor = input.text.value;
+        });
     }
 
     function updateColorSwatches() {
@@ -91,15 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function updateColorInput(colorInput, textInput) {
-        colorInput.value = textInput.value;
-        updateAll();
-    }
-
-    function updateTextInput(colorInput, textInput) {
-        textInput.value = colorInput.value;
-    }
-
     function updateBoardInfo() {
         const boardTitle = document.getElementById('board-title');
         const boardDesc = document.getElementById('board-description');
@@ -114,13 +111,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     colorInputs.forEach(input => {
-        input.color.addEventListener('input', () => {
-            updateTextInput(input.color, input.text);
-            updateAll();
+        input.swatch.addEventListener('click', () => {
+            input.text.parentElement.open = !input.text.parentElement.open;
         });
-        input.text.addEventListener('input', () => {
-            updateColorInput(input.color, input.text);
-        });
+        input.text.addEventListener('input', updateAll);
     });
 
     fontFamilySelect.addEventListener('change', updateAll);
