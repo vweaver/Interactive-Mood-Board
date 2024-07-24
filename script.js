@@ -73,11 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
     boardNameInput.addEventListener('input', updateAll);
     boardDescriptionInput.addEventListener('input', updateAll);
     exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', debounce(() => {
-        importClickCount++;
-        console.log(`Import button clicked (count: ${importClickCount})`);
+    importButton.addEventListener('click', () => {
+        console.log('Import button clicked');
         importInput.click();
-    }, 300));
+    });
     importInput.addEventListener('change', (event) => {
         console.log('File input change event triggered');
         importSettings(event);
