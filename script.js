@@ -20,11 +20,40 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
 
-        // Update button colors
-        document.getElementById('primary-button').style.backgroundColor = colorInputs[0].color.value;
-        document.getElementById('secondary-button').style.backgroundColor = colorInputs[1].color.value;
-        document.getElementById('outline-button').style.borderColor = colorInputs[0].color.value;
-        document.getElementById('outline-button').style.color = colorInputs[0].color.value;
+        // Update button colors and add hover effects
+        const primaryButton = document.getElementById('primary-button');
+        const secondaryButton = document.getElementById('secondary-button');
+        const outlineButton = document.getElementById('outline-button');
+
+        primaryButton.style.backgroundColor = colorInputs[0].color.value;
+        secondaryButton.style.backgroundColor = colorInputs[1].color.value;
+        outlineButton.style.borderColor = colorInputs[0].color.value;
+        outlineButton.style.color = colorInputs[0].color.value;
+
+        // Add hover effects
+        [primaryButton, secondaryButton, outlineButton, sampleButton].forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                if (this === primaryButton || this === sampleButton) {
+                    this.style.backgroundColor = colorInputs[1].color.value; // Use secondary color on hover
+                } else if (this === secondaryButton) {
+                    this.style.backgroundColor = colorInputs[0].color.value; // Use primary color on hover
+                } else if (this === outlineButton) {
+                    this.style.backgroundColor = colorInputs[0].color.value;
+                    this.style.color = colorInputs[2].color.value; // Use background color for text
+                }
+            });
+
+            button.addEventListener('mouseleave', function() {
+                if (this === primaryButton || this === sampleButton) {
+                    this.style.backgroundColor = colorInputs[0].color.value; // Revert to primary color
+                } else if (this === secondaryButton) {
+                    this.style.backgroundColor = colorInputs[1].color.value; // Revert to secondary color
+                } else if (this === outlineButton) {
+                    this.style.backgroundColor = 'transparent';
+                    this.style.color = colorInputs[0].color.value; // Revert to primary color for text
+                }
+            });
+        });
 
         // Keep the sample button using primary color
         sampleButton.style.backgroundColor = colorInputs[0].color.value;
