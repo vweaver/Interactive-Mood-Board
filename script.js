@@ -154,6 +154,15 @@ document.addEventListener('DOMContentLoaded', function () {
         updateBoardDetails();
     }
 
+    // Add immediate update event listeners
+    boardNameInput.addEventListener('input', (event) => {
+        document.getElementById('board-title').textContent = event.target.value;
+    });
+
+    boardDescriptionInput.addEventListener('input', (event) => {
+        document.getElementById('board-description').textContent = event.target.value;
+    });
+
     // Replace updateStyles with updateAll in all event listeners
     colorInputs.forEach(input => {
         input.color.addEventListener('input', () => {
