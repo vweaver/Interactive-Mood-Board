@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const a = document.createElement('a');
         a.href = url;
-        const fileName = `${boardNameInput.value.replace(/\s+/g, '_').toLowerCase()}_mood_board_settings.json`;
+        const fileName = `${boardNameInput.value.replace(/\s+/g, '_').toLowerCase()}_mood_board.json`;
         a.download = fileName;
         document.body.appendChild(a);
         a.click();
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function(e) {
+            reader.onload = function (e) {
                 try {
                     const settings = JSON.parse(e.target.result);
                     applyImportedSettings(settings);
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateColorSwatches() {
         colorInputs.forEach((input, index) => {
             input.swatch.style.backgroundColor = input.text.value;
-        
+
             // Update mood board swatches
             const id = ['primary', 'secondary', 'light-bg', 'text', 'link', 'dark-bg'][index];
             const swatch = document.getElementById(`${id}-swatch`);
