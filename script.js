@@ -73,8 +73,17 @@ document.addEventListener('DOMContentLoaded', function () {
     boardNameInput.addEventListener('input', updateAll);
     boardDescriptionInput.addEventListener('input', updateAll);
     exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', () => importInput.click());
-    importInput.addEventListener('change', importSettings);
+    importButton.addEventListener('click', debounce(() => {
+        importClickCount++;
+        console.log(`Import button clicked (count: ${importClickCount})`);
+        importInput.click();
+    }, 300));
+    importInput.addEventListener('change', (event) => {
+        console.log('File input change event triggered');
+        importSettings(event);
+        // Reset the file input value to allow selecting the same file again
+        event.target.value = '';
+    });
 
     function exportSettings() {
         const settings = {
