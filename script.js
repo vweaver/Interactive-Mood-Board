@@ -44,14 +44,13 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs.forEach(input => {
             input.swatch.style.backgroundColor = input.text.value;
         });
-    }
 
-    function updateColorSwatches() {
+        // Update mood board swatches
         ['primary', 'secondary', 'light-bg', 'text'].forEach((id, index) => {
             const swatch = document.getElementById(`${id}-swatch`);
             const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
             if (swatch && hex) {
-                const colorValue = colorInputs[index === 3 ? 4 : index].color.value;
+                const colorValue = colorInputs[index === 3 ? 4 : index].text.value;
                 swatch.style.backgroundColor = colorValue;
                 hex.textContent = colorValue;
             }
