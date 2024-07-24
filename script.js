@@ -133,7 +133,12 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('Import button clicked');
         importInput.click();
     });
-    importInput.addEventListener('change', importSettings);
+    importInput.addEventListener('change', (event) => {
+        console.log('File input change event triggered');
+        importSettings(event);
+        // Reset the file input value to allow selecting the same file again
+        event.target.value = '';
+    });
 
     function applyImportedSettings(settings) {
         // Apply color settings
