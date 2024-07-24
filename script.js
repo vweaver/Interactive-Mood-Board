@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
 
+        // Update link color
+        document.querySelectorAll('a').forEach(link => {
+            link.style.color = colorInputs[3].color.value;
+        });
+
         // Update color swatches
         document.getElementById('primary-swatch').style.backgroundColor = colorInputs[0].color.value;
         document.getElementById('secondary-swatch').style.backgroundColor = colorInputs[1].color.value;
@@ -128,6 +133,26 @@ document.addEventListener('DOMContentLoaded', function () {
     boardNameInput.addEventListener('input', updateBoardInfo);
     boardDescriptionInput.addEventListener('input', updateBoardInfo);
 
-    // Initial update for board info
-    updateBoardInfo();
+    // Call updateBoardInfo when updating styles
+    function updateAll() {
+        updateStyles();
+        updateBoardInfo();
+    }
+
+    // Replace updateStyles with updateAll in all event listeners
+    colorInputs.forEach(input => {
+        input.color.addEventListener('input', () => {
+            updateTextInput(input.color, input.text);
+            updateAll();
+        });
+        input.text.addEventListener('input', () => {
+            updateColorInput(input.color, input.text);
+            updateAll();
+        });
+    });
+
+    fontFamilySelect.addEventListener('change', updateAll);
+
+    // Initial update
+    updateAll();
 });
