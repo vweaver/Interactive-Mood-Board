@@ -105,8 +105,28 @@ document.addEventListener('DOMContentLoaded', function () {
         URL.revokeObjectURL(url);
     }
 
+    let isImporting = false;
+    let importClickCount = 0;
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     function importSettings(event) {
         console.log('importSettings function called');
+        if (isImporting) {
+            console.log('Import already in progress, skipping');
+            return;
+        }
+        isImporting = true;
         const file = event.target.files[0];
         if (file) {
             console.log('File selected:', file.name);
@@ -120,19 +140,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 } catch (error) {
                     console.error('Error parsing JSON:', error);
                     alert('Error importing settings. Please make sure the file is a valid JSON.');
+                } finally {
+                    isImporting = false;
                 }
             };
             reader.readAsText(file);
         } else {
             console.log('No file selected');
+            isImporting = false;
         }
     }
 
     exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', () => {
-        console.log('Import button clicked');
+    importButton.addEventListener('click', debounce(() => {
+        importClickCount++;
+        console.log(`Import button clicked (count: ${importClickCount})`);
         importInput.click();
-    });
+    }, 300));
     importInput.addEventListener('change', (event) => {
         console.log('File input change event triggered');
         importSettings(event);
