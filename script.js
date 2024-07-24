@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
             darkBgSection.style.backgroundColor = colorInputs[5].color.value;
         }
 
+        // Apply dark background color to navbar and footer
+        const navbar = document.querySelector('nav');
+        const footer = document.querySelector('footer');
+        if (navbar) navbar.style.backgroundColor = colorInputs[5].color.value;
+        if (footer) footer.style.backgroundColor = colorInputs[5].color.value;
+
         document.querySelectorAll('a').forEach(link => {
             link.style.color = colorInputs[3].color.value;
         });
