@@ -1,3 +1,10 @@
+function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const arrow = section.previousElementSibling.querySelector('svg');
+    section.classList.toggle('hidden');
+    arrow.classList.toggle('rotate-180');
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const colorInputs = [
         { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), tailwind: document.getElementById('primary-color-tailwind'), sample: document.getElementById('primary-color-sample') },
