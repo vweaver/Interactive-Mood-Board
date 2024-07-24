@@ -72,18 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fontFamilySelect.addEventListener('change', updateAll);
     boardNameInput.addEventListener('input', updateAll);
     boardDescriptionInput.addEventListener('input', updateAll);
-    exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', () => {                  // Log when the import button is clicked
-        console.log('Import button clicked');
-        importInput.click();
-    });
-    importInput.addEventListener('change', (event) => {
-        console.log('File input change event triggered');
-        importSettings(event);
-        // Reset the file input value to allow selecting the same file again
-        event.target.value = '';
-    });
-
     function exportSettings() {
         const settings = {
             colors: {
@@ -129,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function importSettings(event) {
-        console.log('importSettings function called', event);
         if (isImporting) {
             console.log('Import already in progress, skipping');
             return;
@@ -137,13 +124,10 @@ document.addEventListener('DOMContentLoaded', function () {
         isImporting = true;
         const file = event.target.files[0];
         if (file) {
-            console.log(`File selected: ${file.name}`);
             const reader = new FileReader();
             reader.onload = function (e) {
-                console.log('FileReader onload event triggered', e);
                 try {
                     const settings = JSON.parse(e.target.result);
-                    console.log('Parsed settings:', settings);
                     applyImportedSettings(settings);
                 } catch (error) {
                     console.error('Error parsing JSON:', error);
@@ -164,7 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    exportButton.addEventListener('click', exportSettings);
     importButton.addEventListener('click', debounce(() => {
         importClickCount++;
         console.log(`Import button clicked (count: ${importClickCount})`);
