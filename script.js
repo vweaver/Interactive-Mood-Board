@@ -24,7 +24,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Close flyout when clicking outside of it
     document.addEventListener('click', (event) => {
-        if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target)) {
+        if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target) && window.innerWidth < 1100) {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1100) {
+            controlsFlyout.classList.remove('-translate-x-full');
+        } else {
             controlsFlyout.classList.add('-translate-x-full');
         }
     });
