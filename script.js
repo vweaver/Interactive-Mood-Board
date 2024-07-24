@@ -8,15 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     const fontFamilySelect = document.getElementById('font-family');
     const body = document.body;
-    const sampleText = document.getElementById('sample-text');
     const sampleButton = document.getElementById('sample-button');
     const sampleLink = document.getElementById('sample-link');
     const boardNameInput = document.getElementById('board-name-control');
     const boardDescriptionInput = document.getElementById('board-description-control');
-    const boardNameDisplay = document.querySelector('.bg-white h2');
-    const boardDescriptionDisplay = document.getElementById('sample-text');
-    const topLeftBoardName = document.querySelector('.grid-cols-3 .bg-white h2');
-    const topLeftBoardDescription = document.querySelector('.grid-cols-3 .bg-white p');
+
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].color.value;
@@ -56,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add hover effects
         [primaryButton, secondaryButton, outlineButton].forEach(button => {
             if (button) {
-                button.addEventListener('mouseenter', function() {
+                button.addEventListener('mouseenter', function () {
                     if (this === primaryButton) {
                         this.style.backgroundColor = colorInputs[1].color.value; // Use secondary color on hover
                     } else if (this === secondaryButton) {
@@ -67,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
 
-                button.addEventListener('mouseleave', function() {
+                button.addEventListener('mouseleave', function () {
                     if (this === primaryButton) {
                         this.style.backgroundColor = colorInputs[0].color.value; // Revert to primary color
                     } else if (this === secondaryButton) {
@@ -125,11 +121,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateBoardInfo() {
         const boardName = boardNameInput.value;
         const boardDescription = boardDescriptionInput.value;
-        
+
         console.log('Updating board info:');
         console.log('Board Name:', boardName);
         console.log('Board Description:', boardDescription);
-        
+
         // Update board title
         const boardTitle = document.getElementById('board-title');
         if (boardTitle) {
@@ -138,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             console.error('Board title element not found');
         }
-        
+
         // Update board description
         const boardDesc = document.getElementById('board-description');
         if (boardDesc) {
@@ -152,16 +148,16 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateBoardDetails() {
         const boardTitle = document.getElementById('board-title');
         const boardDescription = document.getElementById('board-description');
-        
+
         boardTitle.textContent = boardNameInput.value;
         boardDescription.textContent = boardDescriptionInput.value;
     }
 
-    boardNameInput.addEventListener('input', function() {
+    boardNameInput.addEventListener('input', function () {
         console.log('Board name input event triggered');
         updateAll();
     });
-    boardDescriptionInput.addEventListener('input', function() {
+    boardDescriptionInput.addEventListener('input', function () {
         console.log('Board description input event triggered');
         updateAll();
     });
