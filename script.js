@@ -305,13 +305,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function saveSettings() {
-        const settingName = prompt("Enter a name for these settings:");
-        if (settingName) {
+        const boardName = document.getElementById('board-name-control').value.trim();
+        if (boardName) {
             const settings = getCurrentSettings();
             const savedSettings = JSON.parse(localStorage.getItem('savedSettings') || '{}');
-            savedSettings[settingName] = settings;
+            savedSettings[boardName] = settings;
             localStorage.setItem('savedSettings', JSON.stringify(savedSettings));
             loadSavedSettingsToDropdown();
+            alert(`Settings saved for "${boardName}"`);
+        } else {
+            alert("Please enter a board name before saving settings.");
         }
     }
 
@@ -322,6 +325,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const settings = savedSettings[settingName];
             if (settings) {
                 applyImportedSettings(settings);
+                document.getElementById('board-name-control').value = settingName;
+                document.getElementById('board-description-control').value = settings.boardDescription;
+                updateAll();
             }
         }
     }
