@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         isImporting = true;
         const file = event.target.files[0];
         if (file) {
-            console.log('File selected:', file.name);
+            console.log(`File selected: ${file.name}`);
             const reader = new FileReader();
             reader.onload = function (e) {
                 console.log('FileReader onload event triggered', e);
