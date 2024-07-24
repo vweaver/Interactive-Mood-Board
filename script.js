@@ -8,11 +8,8 @@ document.addEventListener('DOMContentLoaded', function () {
     ];
     const fontFamilySelect = document.getElementById('font-family');
     const body = document.body;
-    const sampleButton = document.getElementById('sample-button');
-    const sampleLink = document.getElementById('sample-link');
     const boardNameInput = document.getElementById('board-name-control');
     const boardDescriptionInput = document.getElementById('board-description-control');
-
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].color.value;
@@ -22,154 +19,86 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
 
-        // Update link color
         document.querySelectorAll('a').forEach(link => {
             link.style.color = colorInputs[3].color.value;
         });
 
-        // Update color swatches
-        document.getElementById('primary-swatch').style.backgroundColor = colorInputs[0].color.value;
-        document.getElementById('secondary-swatch').style.backgroundColor = colorInputs[1].color.value;
-        document.getElementById('light-bg-swatch').style.backgroundColor = colorInputs[2].color.value;
-        document.getElementById('dark-bg-swatch').style.backgroundColor = colorInputs[4].color.value;
+        updateColorSwatches();
+        updateButtons();
+    }
 
-        // Update hex codes
-        document.getElementById('primary-hex').textContent = colorInputs[0].color.value;
-        document.getElementById('secondary-hex').textContent = colorInputs[1].color.value;
-        document.getElementById('background-hex').textContent = colorInputs[2].color.value;
-        document.getElementById('text-hex').textContent = colorInputs[4].color.value;
+    function updateColorSwatches() {
+        ['primary', 'secondary', 'light-bg', 'dark-bg'].forEach((id, index) => {
+            const swatch = document.getElementById(`${id}-swatch`);
+            const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
+            if (swatch && hex) {
+                swatch.style.backgroundColor = colorInputs[index === 3 ? 4 : index].color.value;
+                hex.textContent = colorInputs[index === 3 ? 4 : index].color.value;
+            }
+        });
+    }
 
-        // Update button colors and add hover effects
-        const primaryButton = document.getElementById('primary-button');
-        const secondaryButton = document.getElementById('secondary-button');
-        const outlineButton = document.getElementById('outline-button');
-
-        primaryButton.style.backgroundColor = colorInputs[0].color.value;
-        secondaryButton.style.backgroundColor = colorInputs[1].color.value;
-        outlineButton.style.borderColor = colorInputs[0].color.value;
-        outlineButton.style.color = colorInputs[0].color.value;
-
-        // Add hover effects
-        [primaryButton, secondaryButton, outlineButton].forEach(button => {
+    function updateButtons() {
+        ['primary', 'secondary', 'outline'].forEach(id => {
+            const button = document.getElementById(`${id}-button`);
             if (button) {
-                button.addEventListener('mouseenter', function () {
-                    if (this === primaryButton) {
-                        this.style.backgroundColor = colorInputs[1].color.value; // Use secondary color on hover
-                    } else if (this === secondaryButton) {
-                        this.style.backgroundColor = colorInputs[0].color.value; // Use primary color on hover
-                    } else if (this === outlineButton) {
-                        this.style.backgroundColor = colorInputs[0].color.value;
-                        this.style.color = colorInputs[2].color.value; // Use background color for text
-                    }
-                });
+                if (id === 'outline') {
+                    button.style.borderColor = colorInputs[0].color.value;
+                    button.style.color = colorInputs[0].color.value;
+                } else {
+                    button.style.backgroundColor = colorInputs[id === 'primary' ? 0 : 1].color.value;
+                }
+                updateButtonHoverEffects(button, id);
+            }
+        });
+    }
 
-                button.addEventListener('mouseleave', function () {
-                    if (this === primaryButton) {
-                        this.style.backgroundColor = colorInputs[0].color.value; // Revert to primary color
-                    } else if (this === secondaryButton) {
-                        this.style.backgroundColor = colorInputs[1].color.value; // Revert to secondary color
-                    } else if (this === outlineButton) {
-                        this.style.backgroundColor = 'transparent';
-                        this.style.color = colorInputs[0].color.value; // Revert to primary color for text
-                    }
-                });
+    function updateButtonHoverEffects(button, id) {
+        button.addEventListener('mouseenter', () => {
+            if (id === 'primary') {
+                button.style.backgroundColor = colorInputs[1].color.value;
+            } else if (id === 'secondary') {
+                button.style.backgroundColor = colorInputs[0].color.value;
+            } else if (id === 'outline') {
+                button.style.backgroundColor = colorInputs[0].color.value;
+                button.style.color = colorInputs[2].color.value;
             }
         });
 
-        // Update sample button if it exists
-        if (sampleButton) {
-            sampleButton.style.backgroundColor = colorInputs[0].color.value;
-            sampleButton.style.color = colorInputs[4].color.value;
-        }
-
-        // Update sample link if it exists
-        if (sampleLink) {
-            sampleLink.style.color = colorInputs[3].color.value;
-        }
+        button.addEventListener('mouseleave', () => {
+            if (id === 'primary') {
+                button.style.backgroundColor = colorInputs[0].color.value;
+            } else if (id === 'secondary') {
+                button.style.backgroundColor = colorInputs[1].color.value;
+            } else if (id === 'outline') {
+                button.style.backgroundColor = 'transparent';
+                button.style.color = colorInputs[0].color.value;
+            }
+        });
     }
 
     function updateColorInput(colorInput, textInput) {
         colorInput.value = textInput.value;
-        updateStyles();
+        updateAll();
     }
 
     function updateTextInput(colorInput, textInput) {
         textInput.value = colorInput.value;
     }
 
-    colorInputs.forEach(input => {
-        input.color.addEventListener('input', () => {
-            updateTextInput(input.color, input.text);
-            updateStyles();
-            updateBoardInfo();
-        });
-        input.text.addEventListener('input', () => {
-            updateColorInput(input.color, input.text);
-            updateBoardInfo();
-        });
-    });
-
-    fontFamilySelect.addEventListener('change', () => {
-        updateStyles();
-        updateBoardInfo();
-    });
-
-    // Initial update
-    updateStyles();
-    updateBoardInfo();
-
     function updateBoardInfo() {
-        const boardName = boardNameInput.value;
-        const boardDescription = boardDescriptionInput.value;
-
-        console.log('Updating board info:');
-        console.log('Board Name:', boardName);
-        console.log('Board Description:', boardDescription);
-
-        // Update board title
         const boardTitle = document.getElementById('board-title');
-        if (boardTitle) {
-            boardTitle.textContent = boardName;
-            console.log('Updated board title');
-        } else {
-            console.error('Board title element not found');
-        }
-
-        // Update board description
         const boardDesc = document.getElementById('board-description');
-        if (boardDesc) {
-            boardDesc.textContent = boardDescription;
-            console.log('Updated board description');
-        } else {
-            console.error('Board description element not found');
-        }
+
+        if (boardTitle) boardTitle.textContent = boardNameInput.value;
+        if (boardDesc) boardDesc.textContent = boardDescriptionInput.value;
     }
 
-    function updateBoardDetails() {
-        const boardTitle = document.getElementById('board-title');
-        const boardDescription = document.getElementById('board-description');
-
-        boardTitle.textContent = boardNameInput.value;
-        boardDescription.textContent = boardDescriptionInput.value;
-    }
-
-    boardNameInput.addEventListener('input', function () {
-        console.log('Board name input event triggered');
-        updateAll();
-    });
-    boardDescriptionInput.addEventListener('input', function () {
-        console.log('Board description input event triggered');
-        updateAll();
-    });
-
-    // Call updateBoardInfo when updating styles
     function updateAll() {
-        console.log('updateAll function called');
         updateStyles();
         updateBoardInfo();
     }
 
-    // Replace updateStyles with updateAll in all event listeners
     colorInputs.forEach(input => {
         input.color.addEventListener('input', () => {
             updateTextInput(input.color, input.text);
@@ -177,11 +106,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         input.text.addEventListener('input', () => {
             updateColorInput(input.color, input.text);
-            updateAll();
         });
     });
 
     fontFamilySelect.addEventListener('change', updateAll);
+    boardNameInput.addEventListener('input', updateAll);
+    boardDescriptionInput.addEventListener('input', updateAll);
 
     // Initial update
     updateAll();
