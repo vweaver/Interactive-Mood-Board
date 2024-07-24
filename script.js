@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function importSettings(event) {
-        console.log('importSettings function called');
+        console.log('importSettings function called', event);
         if (isImporting) {
             console.log('Import already in progress, skipping');
             return;
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('File selected:', file.name);
             const reader = new FileReader();
             reader.onload = function (e) {
-                console.log('FileReader onload event triggered');
+                console.log('FileReader onload event triggered', e);
                 try {
                     const settings = JSON.parse(e.target.result);
                     console.log('Parsed settings:', settings);
@@ -160,10 +160,20 @@ document.addEventListener('DOMContentLoaded', function () {
             };
             reader.readAsText(file);
         } else {
-            console.log('No file selected');
+            console.error('No file selected');
             isImporting = false;
         }
     }
+
+    // Log when the import button is clicked
+    importButton.addEventListener('click', () => {
+        console.log('Import button clicked');
+    });
+
+    // Log when the file input change event is triggered
+    importInput.addEventListener('change', (event) => {
+        console.log('File input change event triggered', event);
+    });
 
     exportButton.addEventListener('click', exportSettings);
     importButton.addEventListener('click', debounce(() => {
