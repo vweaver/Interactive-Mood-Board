@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "primary": "#2E7D32",
+    "secondary": "#FFA000",
+    "background": "#F5F5F5",
+    "link": "#1B5E20",
+    "text": "#333333",
+    "darkBackground": "#1B5E20"
+  },
+  "fontFamily": "'Open Sans', sans-serif",
+  "boardName": "Fresh Harvest Wholesale Moodboard",
+  "boardDescription": "A clean and professional design for a wholesale produce company, featuring earthy greens and warm accents to evoke freshness and quality."
+}
