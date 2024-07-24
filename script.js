@@ -106,12 +106,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function importSettings(event) {
+        console.log('importSettings function called');
         const file = event.target.files[0];
         if (file) {
+            console.log('File selected:', file.name);
             const reader = new FileReader();
             reader.onload = function (e) {
+                console.log('FileReader onload event triggered');
                 try {
                     const settings = JSON.parse(e.target.result);
+                    console.log('Parsed settings:', settings);
                     applyImportedSettings(settings);
                 } catch (error) {
                     console.error('Error parsing JSON:', error);
@@ -119,12 +123,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             };
             reader.readAsText(file);
+        } else {
+            console.log('No file selected');
         }
     }
 
     exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', () => importInput.click());
-    importInput.addEventListener('change', importSettings);
+    importButton.addEventListener('click', () => {
+        console.log('Import button clicked');
+        importInput.click();
+    });
+    importInput.addEventListener('change', (event) => {
+        console.log('File input change event triggered');
+        importSettings(event);
+    });
 
     function applyImportedSettings(settings) {
         // Apply color settings
