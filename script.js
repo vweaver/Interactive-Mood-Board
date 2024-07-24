@@ -6,6 +6,24 @@ function toggleSection(sectionId) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const controlsFlyout = document.getElementById('controls-flyout');
+    const openFlyoutBtn = document.getElementById('open-flyout');
+    const closeFlyoutBtn = document.getElementById('close-flyout');
+
+    openFlyoutBtn.addEventListener('click', () => {
+        controlsFlyout.classList.remove('-translate-x-full');
+    });
+
+    closeFlyoutBtn.addEventListener('click', () => {
+        controlsFlyout.classList.add('-translate-x-full');
+    });
+
+    // Close flyout when clicking outside of it
+    document.addEventListener('click', (event) => {
+        if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target)) {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
+    });
     const colorInputs = [
         { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), tailwind: document.getElementById('primary-color-tailwind'), sample: document.getElementById('primary-color-sample') },
         { swatch: document.getElementById('secondary-color-swatch'), text: document.getElementById('secondary-color-text'), tailwind: document.getElementById('secondary-color-tailwind'), sample: document.getElementById('secondary-color-sample') },
