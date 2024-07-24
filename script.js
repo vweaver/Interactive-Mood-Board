@@ -170,7 +170,12 @@ document.addEventListener('DOMContentLoaded', function () {
             const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
             if (swatch && hex) {
                 swatch.style.backgroundColor = input.text.value;
-                hex.textContent = input.text.value;
+                const selectedOption = input.tailwind ? input.tailwind.options[input.tailwind.selectedIndex] : null;
+                if (selectedOption && selectedOption.value !== "") {
+                    hex.textContent = selectedOption.text;
+                } else {
+                    hex.textContent = input.text.value;
+                }
             }
         });
     }
