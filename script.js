@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     colorInputs.forEach(input => {
         input.swatch.addEventListener('click', () => {
-            input.text.parentElement.open = !input.text.parentElement.open;
+            input.text.parentElement.classList.toggle('hidden');
         });
         input.text.addEventListener('input', updateAll);
     });
