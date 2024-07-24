@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const sampleText = document.getElementById('sample-text');
     const sampleButton = document.getElementById('sample-button');
     const sampleLink = document.getElementById('sample-link');
-    const boardNameInput = document.getElementById('board-name');
-    const boardDescriptionInput = document.getElementById('board-description');
+    const boardNameInput = document.getElementById('board-name-control');
+    const boardDescriptionInput = document.getElementById('board-description-control');
     const boardNameDisplay = document.querySelector('.bg-white h2');
     const boardDescriptionDisplay = document.getElementById('sample-text');
     const topLeftBoardName = document.querySelector('.grid-cols-3 .bg-white h2');
