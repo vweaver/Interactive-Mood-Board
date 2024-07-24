@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('light-bg-swatch').style.backgroundColor = colorInputs[2].color.value;
         document.getElementById('dark-bg-swatch').style.backgroundColor = colorInputs[4].color.value;
 
+        // Update hex codes
+        document.getElementById('primary-hex').textContent = colorInputs[0].color.value;
+        document.getElementById('secondary-hex').textContent = colorInputs[1].color.value;
+        document.getElementById('background-hex').textContent = colorInputs[2].color.value;
+        document.getElementById('text-hex').textContent = colorInputs[4].color.value;
+
         // Update button colors and add hover effects
         const primaryButton = document.getElementById('primary-button');
         const secondaryButton = document.getElementById('secondary-button');
