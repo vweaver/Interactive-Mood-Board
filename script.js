@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { swatch: document.getElementById('background-color-swatch'), text: document.getElementById('background-color-text'), tailwind: document.getElementById('background-color-tailwind') },
         { swatch: document.getElementById('link-color-swatch'), text: document.getElementById('link-color-text'), tailwind: document.getElementById('link-color-tailwind') },
         { swatch: document.getElementById('text-color-swatch'), text: document.getElementById('text-color-text'), tailwind: document.getElementById('text-color-tailwind') },
-        { swatch: document.getElementById('dark-background-color-swatch'), text: document.getElementById('dark-background-color-text'), tailwind: document.getElementById('dark-background-color-tailwind') }
+        { swatch: document.getElementById('dark-bg-color-swatch'), text: document.getElementById('dark-bg-color-text'), tailwind: document.getElementById('dark-bg-color-tailwind') }
     ];
     const fontFamilySelect = document.getElementById('font-family');
     const body = document.body;
