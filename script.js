@@ -99,9 +99,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateBoardInfo() {
         const boardTitle = document.getElementById('board-title');
         const boardDesc = document.getElementById('board-description');
+        const boardNameElements = document.querySelectorAll('.board-name');
+        const boardDescElements = document.querySelectorAll('.board-description');
 
         if (boardTitle) boardTitle.textContent = boardNameInput.value;
         if (boardDesc) boardDesc.textContent = boardDescriptionInput.value;
+
+        boardNameElements.forEach(el => el.textContent = boardNameInput.value);
+        boardDescElements.forEach(el => el.textContent = boardDescriptionInput.value);
     }
 
     function updateAll() {
