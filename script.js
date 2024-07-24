@@ -119,15 +119,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const boardName = boardNameInput.value;
         const boardDescription = boardDescriptionInput.value;
         
-        // Update all instances of board name
-        document.querySelectorAll('.board-name').forEach(el => {
-            el.textContent = boardName;
-        });
+        // Update board title
+        const boardTitle = document.getElementById('board-title');
+        if (boardTitle) {
+            boardTitle.textContent = boardName;
+        }
         
-        // Update all instances of board description
-        document.querySelectorAll('.board-description').forEach(el => {
-            el.textContent = boardDescription;
-        });
+        // Update board description
+        const boardDesc = document.getElementById('board-description');
+        if (boardDesc) {
+            boardDesc.textContent = boardDescription;
+        }
     }
 
     function updateBoardDetails() {
@@ -138,30 +140,14 @@ document.addEventListener('DOMContentLoaded', function () {
         boardDescription.textContent = boardDescriptionInput.value;
     }
 
-    boardNameInput.addEventListener('input', () => {
-        updateBoardInfo();
-        updateBoardDetails();
-    });
-    boardDescriptionInput.addEventListener('input', () => {
-        updateBoardInfo();
-        updateBoardDetails();
-    });
+    boardNameInput.addEventListener('input', updateAll);
+    boardDescriptionInput.addEventListener('input', updateAll);
 
-    // Call updateBoardInfo and updateBoardDetails when updating styles
+    // Call updateBoardInfo when updating styles
     function updateAll() {
         updateStyles();
         updateBoardInfo();
-        updateBoardDetails();
     }
-
-    // Add immediate update event listeners
-    boardNameInput.addEventListener('input', (event) => {
-        document.getElementById('board-title').textContent = event.target.value;
-    });
-
-    boardDescriptionInput.addEventListener('input', (event) => {
-        document.getElementById('board-description').textContent = event.target.value;
-    });
 
     // Replace updateStyles with updateAll in all event listeners
     colorInputs.forEach(input => {
