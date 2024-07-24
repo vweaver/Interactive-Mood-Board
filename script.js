@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const button = document.getElementById(`${id}-button`);
             if (button) {
                 if (id === 'outline') {
-                    button.style.borderColor = colorInputs[0].color.value;
-                    button.style.color = colorInputs[0].color.value;
+                    button.style.borderColor = colorInputs[0].text.value;
+                    button.style.color = colorInputs[0].text.value;
                 } else {
-                    button.style.backgroundColor = colorInputs[id === 'primary' ? 0 : 1].color.value;
+                    button.style.backgroundColor = colorInputs[id === 'primary' ? 0 : 1].text.value;
                 }
                 updateButtonHoverEffects(button, id);
             }
@@ -75,23 +75,23 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateButtonHoverEffects(button, id) {
         button.addEventListener('mouseenter', () => {
             if (id === 'primary') {
-                button.style.backgroundColor = colorInputs[1].color.value;
+                button.style.backgroundColor = colorInputs[1].text.value;
             } else if (id === 'secondary') {
-                button.style.backgroundColor = colorInputs[0].color.value;
+                button.style.backgroundColor = colorInputs[0].text.value;
             } else if (id === 'outline') {
-                button.style.backgroundColor = colorInputs[0].color.value;
-                button.style.color = colorInputs[2].color.value;
+                button.style.backgroundColor = colorInputs[0].text.value;
+                button.style.color = colorInputs[2].text.value;
             }
         });
 
         button.addEventListener('mouseleave', () => {
             if (id === 'primary') {
-                button.style.backgroundColor = colorInputs[0].color.value;
+                button.style.backgroundColor = colorInputs[0].text.value;
             } else if (id === 'secondary') {
-                button.style.backgroundColor = colorInputs[1].color.value;
+                button.style.backgroundColor = colorInputs[1].text.value;
             } else if (id === 'outline') {
                 button.style.backgroundColor = 'transparent';
-                button.style.color = colorInputs[0].color.value;
+                button.style.color = colorInputs[0].text.value;
             }
         });
     }
