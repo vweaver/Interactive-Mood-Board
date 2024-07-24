@@ -10,22 +10,21 @@ document.addEventListener('DOMContentLoaded', function () {
     const openFlyoutBtn = document.getElementById('open-flyout');
     const closeFlyoutBtn = document.getElementById('close-flyout');
 
-    openFlyoutBtn.addEventListener('click', () => {
-        if (controlsFlyout.classList.contains('-translate-x-full')) {
-            controlsFlyout.classList.remove('-translate-x-full');
-        } else {
-            controlsFlyout.classList.add('-translate-x-full');
-        }
-    });
+    function toggleFlyout() {
+        controlsFlyout.classList.toggle('-translate-x-full');
+    }
 
-    closeFlyoutBtn.addEventListener('click', () => {
+    function closeFlyout() {
         controlsFlyout.classList.add('-translate-x-full');
-    });
+    }
+
+    openFlyoutBtn.addEventListener('click', toggleFlyout);
+    closeFlyoutBtn.addEventListener('click', closeFlyout);
 
     // Close flyout when clicking outside of it
     document.addEventListener('click', (event) => {
         if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target) && window.innerWidth < 1100) {
-            controlsFlyout.classList.add('-translate-x-full');
+            closeFlyout();
         }
     });
 
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (window.innerWidth >= 1100) {
             controlsFlyout.classList.remove('-translate-x-full');
         } else {
-            controlsFlyout.classList.add('-translate-x-full');
+            closeFlyout();
         }
     });
     const colorInputs = [
@@ -53,32 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const importButton = document.getElementById('import-settings-btn');
     const importInput = document.getElementById('import-settings');
 
-    // Event Listeners
-    openFlyoutBtn.addEventListener('click', () => {
-        if (controlsFlyout.classList.contains('-translate-x-full')) {
-            controlsFlyout.classList.remove('-translate-x-full');
-        } else {
-            controlsFlyout.classList.add('-translate-x-full');
-        }
-    });
-
-    closeFlyoutBtn.addEventListener('click', () => {
-        controlsFlyout.classList.add('-translate-x-full');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target) && window.innerWidth < 1100) {
-            controlsFlyout.classList.add('-translate-x-full');
-        }
-    });
-
-    window.addEventListener('resize', () => {
-        if (window.innerWidth >= 1100) {
-            controlsFlyout.classList.remove('-translate-x-full');
-        } else {
-            controlsFlyout.classList.add('-translate-x-full');
-        }
-    });
+    // Event listeners for flyout are now handled at the top of the script
 
     colorInputs.forEach(input => {
         input.swatch.addEventListener('click', () => {
