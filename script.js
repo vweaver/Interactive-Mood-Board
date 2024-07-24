@@ -125,8 +125,6 @@ document.addEventListener('DOMContentLoaded', function () {
     exportButton.addEventListener('click', exportSettings);
     importButton.addEventListener('click', () => importInput.click());
     importInput.addEventListener('change', importSettings);
-    importButton.addEventListener('click', () => importInput.click());
-    importInput.addEventListener('change', importSettings);
 
     function applyImportedSettings(settings) {
         // Apply color settings
