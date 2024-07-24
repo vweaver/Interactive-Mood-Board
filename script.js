@@ -20,6 +20,12 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
 
+        // Update color swatches
+        document.getElementById('primary-swatch').style.backgroundColor = colorInputs[0].color.value;
+        document.getElementById('secondary-swatch').style.backgroundColor = colorInputs[1].color.value;
+        document.getElementById('light-bg-swatch').style.backgroundColor = colorInputs[2].color.value;
+        document.getElementById('dark-bg-swatch').style.backgroundColor = colorInputs[4].color.value;
+
         // Update button colors and add hover effects
         const primaryButton = document.getElementById('primary-button');
         const secondaryButton = document.getElementById('secondary-button');
