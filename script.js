@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     boardNameInput.addEventListener('input', updateAll);
     boardDescriptionInput.addEventListener('input', updateAll);
     exportButton.addEventListener('click', exportSettings);
-    importButton.addEventListener('click', () => {
+    importButton.addEventListener('click', () => {                  // Log when the import button is clicked
         console.log('Import button clicked');
         importInput.click();
     });
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     isImporting = false;
                 }
             };
-            reader.onerror = function(e) {
+            reader.onerror = function (e) {
                 console.error('Error reading file:', e);
                 alert('Error reading the file. Please try again.');
                 isImporting = false;
@@ -163,16 +163,6 @@ document.addEventListener('DOMContentLoaded', function () {
             isImporting = false;
         }
     }
-
-    // Log when the import button is clicked
-    importButton.addEventListener('click', () => {
-        console.log('Import button clicked');
-    });
-
-    // Log when the file input change event is triggered
-    importInput.addEventListener('change', (event) => {
-        console.log('File input change event triggered', event);
-    });
 
     exportButton.addEventListener('click', exportSettings);
     importButton.addEventListener('click', debounce(() => {
