@@ -134,8 +134,12 @@ document.addEventListener('DOMContentLoaded', function () {
         colorInputs[1].sample.style.color = colorInputs[4].text.value;
 
         const darkBgSection = document.getElementById('dark-bg-section');
+        const primaryOnDarkSample = document.getElementById('primary-on-dark-sample');
         if (darkBgSection) {
             darkBgSection.style.backgroundColor = colorInputs[5].text.value;
+        }
+        if (primaryOnDarkSample) {
+            primaryOnDarkSample.style.backgroundColor = colorInputs[0].text.value;
         }
 
         // Apply dark background color to navbar and footer
