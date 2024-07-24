@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input.swatch.style.backgroundColor = input.text.value;
 
             // Update mood board swatches
-            const id = ['primary', 'secondary', 'light-bg', 'text', 'link', 'dark-bg'][index];
+            const id = ['primary', 'secondary', 'light-bg', 'text', 'text', 'dark-bg'][index];
             const swatch = document.getElementById(`${id}-swatch`);
             const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
             if (swatch && hex) {
