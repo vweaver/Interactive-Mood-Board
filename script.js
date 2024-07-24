@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     const colorInputs = [
-        { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), sample: document.getElementById('primary-color-sample') },
-        { swatch: document.getElementById('secondary-color-swatch'), text: document.getElementById('secondary-color-text'), sample: document.getElementById('secondary-color-sample') },
-        { swatch: document.getElementById('background-color-swatch'), text: document.getElementById('background-color-text') },
-        { swatch: document.getElementById('link-color-swatch'), text: document.getElementById('link-color-text') },
-        { swatch: document.getElementById('text-color-swatch'), text: document.getElementById('text-color-text') },
-        { swatch: document.getElementById('dark-background-color-swatch'), text: document.getElementById('dark-background-color-text') }
+        { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), tailwind: document.getElementById('primary-color-tailwind'), sample: document.getElementById('primary-color-sample') },
+        { swatch: document.getElementById('secondary-color-swatch'), text: document.getElementById('secondary-color-text'), tailwind: document.getElementById('secondary-color-tailwind'), sample: document.getElementById('secondary-color-sample') },
+        { swatch: document.getElementById('background-color-swatch'), text: document.getElementById('background-color-text'), tailwind: document.getElementById('background-color-tailwind') },
+        { swatch: document.getElementById('link-color-swatch'), text: document.getElementById('link-color-text'), tailwind: document.getElementById('link-color-tailwind') },
+        { swatch: document.getElementById('text-color-swatch'), text: document.getElementById('text-color-text'), tailwind: document.getElementById('text-color-tailwind') },
+        { swatch: document.getElementById('dark-background-color-swatch'), text: document.getElementById('dark-background-color-text'), tailwind: document.getElementById('dark-background-color-tailwind') }
     ];
     const fontFamilySelect = document.getElementById('font-family');
     const body = document.body;
@@ -119,6 +119,14 @@ document.addEventListener('DOMContentLoaded', function () {
             input.text.parentElement.classList.toggle('hidden');
         });
         input.text.addEventListener('input', updateAll);
+        if (input.tailwind) {
+            input.tailwind.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    input.text.value = e.target.value;
+                    updateAll();
+                }
+            });
+        }
     });
 
     fontFamilySelect.addEventListener('change', updateAll);
