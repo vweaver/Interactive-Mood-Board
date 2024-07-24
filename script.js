@@ -19,6 +19,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
         colorInputs[0].sample.style.backgroundColor = colorInputs[0].color.value;
         colorInputs[1].sample.style.backgroundColor = colorInputs[1].color.value;
+        colorInputs[1].sample.style.color = colorInputs[4].color.value;
+
+        const darkBgSection = document.getElementById('dark-bg-section');
+        if (darkBgSection) {
+            darkBgSection.style.backgroundColor = colorInputs[5].color.value;
+        }
 
         document.querySelectorAll('a').forEach(link => {
             link.style.color = colorInputs[3].color.value;
@@ -29,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateColorSwatches() {
-        ['primary', 'secondary', 'light-bg', 'text', 'dark-bg'].forEach((id, index) => {
+        ['primary', 'secondary', 'light-bg', 'text'].forEach((id, index) => {
             const swatch = document.getElementById(`${id}-swatch`);
             const hex = document.getElementById(`${id === 'light-bg' ? 'background' : id}-hex`);
             if (swatch && hex) {
-                const colorValue = colorInputs[index === 3 ? 4 : (index === 4 ? 5 : index)].color.value;
+                const colorValue = colorInputs[index === 3 ? 4 : index].color.value;
                 swatch.style.backgroundColor = colorValue;
                 hex.textContent = colorValue;
             }
