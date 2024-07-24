@@ -17,32 +17,50 @@
                         <div class="flex items-center">
                             <label for="primary-color" class="w-1/3 text-sm">Primary:</label>
                             <input type="color" id="primary-color" value="#ff4b01" class="w-1/3">
-                            <input type="text" id="primary-color-text" value="#ff4b01" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="primary-color-text" value="#ff4b01" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                         <div class="flex items-center">
                             <label for="secondary-color" class="w-1/3 text-sm">Secondary:</label>
                             <input type="color" id="secondary-color" value="#faa000" class="w-1/3">
-                            <input type="text" id="secondary-color-text" value="#faa000" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="secondary-color-text" value="#faa000" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                         <div class="flex items-center">
                             <label for="background-color" class="w-1/3 text-sm">Background:</label>
                             <input type="color" id="background-color" value="#ffffff" class="w-1/3">
-                            <input type="text" id="background-color-text" value="#ffffff" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="background-color-text" value="#ffffff" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                         <div class="flex items-center">
                             <label for="dark-background-color" class="w-1/3 text-sm">Dark BG:</label>
                             <input type="color" id="dark-background-color" value="#333333" class="w-1/3">
-                            <input type="text" id="dark-background-color-text" value="#333333" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="dark-background-color-text" value="#333333" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                         <div class="flex items-center">
                             <label for="link-color" class="w-1/3 text-sm">Link:</label>
                             <input type="color" id="link-color" value="#0000ff" class="w-1/3">
-                            <input type="text" id="link-color-text" value="#0000ff" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="link-color-text" value="#0000ff" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                         <div class="flex items-center">
                             <label for="text-color" class="w-1/3 text-sm">Text:</label>
                             <input type="color" id="text-color" value="#000000" class="w-1/3">
-                            <input type="text" id="text-color-text" value="#000000" maxlength="7" class="w-1/3 px-1 py-0.5 text-xs border rounded">
+                            <details class="w-1/3">
+                                <summary class="text-xs cursor-pointer">Hex</summary>
+                                <input type="text" id="text-color-text" value="#000000" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                            </details>
                         </div>
                     </div>
                 </div>
@@ -125,34 +143,22 @@
                                     <div class="text-center">
                                         <div id="primary-swatch" class="w-16 h-16 rounded-full mb-2"></div>
                                         <p class="text-sm font-semibold">Primary</p>
-                                        <details class="mt-1">
-                                            <summary class="text-xs cursor-pointer">Hex</summary>
-                                            <p id="primary-hex" class="text-xs mt-1"></p>
-                                        </details>
+                                        <p id="primary-hex" class="text-xs"></p>
                                     </div>
                                     <div class="text-center">
                                         <div id="secondary-swatch" class="w-16 h-16 rounded-full mb-2"></div>
                                         <p class="text-sm font-semibold">Secondary</p>
-                                        <details class="mt-1">
-                                            <summary class="text-xs cursor-pointer">Hex</summary>
-                                            <p id="secondary-hex" class="text-xs mt-1"></p>
-                                        </details>
+                                        <p id="secondary-hex" class="text-xs"></p>
                                     </div>
                                     <div class="text-center">
                                         <div id="light-bg-swatch" class="w-16 h-16 rounded-full border border-gray-300 mb-2"></div>
                                         <p class="text-sm font-semibold">Background</p>
-                                        <details class="mt-1">
-                                            <summary class="text-xs cursor-pointer">Hex</summary>
-                                            <p id="background-hex" class="text-xs mt-1"></p>
-                                        </details>
+                                        <p id="background-hex" class="text-xs"></p>
                                     </div>
                                     <div class="text-center">
                                         <div id="text-swatch" class="w-16 h-16 rounded-full mb-2"></div>
                                         <p class="text-sm font-semibold">Text</p>
-                                        <details class="mt-1">
-                                            <summary class="text-xs cursor-pointer">Hex</summary>
-                                            <p id="text-hex" class="text-xs mt-1"></p>
-                                        </details>
+                                        <p id="text-hex" class="text-xs"></p>
                                     </div>
                                 </div>
                             </div>
