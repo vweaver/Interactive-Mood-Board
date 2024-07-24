@@ -53,6 +53,55 @@ document.addEventListener('DOMContentLoaded', function () {
     const importButton = document.getElementById('import-settings-btn');
     const importInput = document.getElementById('import-settings');
 
+    // Event Listeners
+    openFlyoutBtn.addEventListener('click', () => {
+        if (controlsFlyout.classList.contains('-translate-x-full')) {
+            controlsFlyout.classList.remove('-translate-x-full');
+        } else {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
+    });
+
+    closeFlyoutBtn.addEventListener('click', () => {
+        controlsFlyout.classList.add('-translate-x-full');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!controlsFlyout.contains(event.target) && !openFlyoutBtn.contains(event.target) && window.innerWidth < 1100) {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1100) {
+            controlsFlyout.classList.remove('-translate-x-full');
+        } else {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
+    });
+
+    colorInputs.forEach(input => {
+        input.swatch.addEventListener('click', () => {
+            input.text.parentElement.classList.toggle('hidden');
+        });
+        input.text.addEventListener('input', updateAll);
+        if (input.tailwind) {
+            input.tailwind.addEventListener('change', (e) => {
+                if (e.target.value) {
+                    input.text.value = e.target.value;
+                    updateAll();
+                }
+            });
+        }
+    });
+
+    fontFamilySelect.addEventListener('change', updateAll);
+    boardNameInput.addEventListener('input', updateAll);
+    boardDescriptionInput.addEventListener('input', updateAll);
+    exportButton.addEventListener('click', exportSettings);
+    importButton.addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', importSettings);
+
     function exportSettings() {
         const settings = {
             colors: {
@@ -236,25 +285,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updateStyles();
         updateBoardInfo();
     }
-
-    colorInputs.forEach(input => {
-        input.swatch.addEventListener('click', () => {
-            input.text.parentElement.classList.toggle('hidden');
-        });
-        input.text.addEventListener('input', updateAll);
-        if (input.tailwind) {
-            input.tailwind.addEventListener('change', (e) => {
-                if (e.target.value) {
-                    input.text.value = e.target.value;
-                    updateAll();
-                }
-            });
-        }
-    });
-
-    fontFamilySelect.addEventListener('change', updateAll);
-    boardNameInput.addEventListener('input', updateAll);
-    boardDescriptionInput.addEventListener('input', updateAll);
 
     // Initial update
     updateAll();
