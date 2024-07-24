@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const controlsFlyout = document.getElementById('controls-flyout');
     const openFlyoutBtn = document.getElementById('open-flyout');
     const closeFlyoutBtn = document.getElementById('close-flyout');
+    const saveSettingsBtn = document.getElementById('save-settings');
+    const savedSettingsDropdown = document.getElementById('saved-settings');
 
     function toggleFlyout() {
         controlsFlyout.classList.toggle('-translate-x-full');
@@ -36,6 +38,15 @@ document.addEventListener('DOMContentLoaded', function () {
             closeFlyout();
         }
     });
+
+    // Load saved settings into dropdown
+    loadSavedSettingsToDropdown();
+
+    // Event listener for saving settings
+    saveSettingsBtn.addEventListener('click', saveSettings);
+
+    // Event listener for loading settings
+    savedSettingsDropdown.addEventListener('change', loadSettings);
     const colorInputs = [
         { swatch: document.getElementById('primary-color-swatch'), text: document.getElementById('primary-color-text'), tailwind: document.getElementById('primary-color-tailwind'), sample: document.getElementById('primary-color-sample') },
         { swatch: document.getElementById('secondary-color-swatch'), text: document.getElementById('secondary-color-text'), tailwind: document.getElementById('secondary-color-tailwind'), sample: document.getElementById('secondary-color-sample') },
@@ -291,6 +302,55 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateAll() {
         updateStyles();
         updateBoardInfo();
+    }
+
+    function saveSettings() {
+        const settingName = prompt("Enter a name for these settings:");
+        if (settingName) {
+            const settings = getCurrentSettings();
+            const savedSettings = JSON.parse(localStorage.getItem('savedSettings') || '{}');
+            savedSettings[settingName] = settings;
+            localStorage.setItem('savedSettings', JSON.stringify(savedSettings));
+            loadSavedSettingsToDropdown();
+        }
+    }
+
+    function loadSettings() {
+        const settingName = savedSettingsDropdown.value;
+        if (settingName) {
+            const savedSettings = JSON.parse(localStorage.getItem('savedSettings') || '{}');
+            const settings = savedSettings[settingName];
+            if (settings) {
+                applyImportedSettings(settings);
+            }
+        }
+    }
+
+    function getCurrentSettings() {
+        return {
+            colors: {
+                primary: colorInputs[0].text.value,
+                secondary: colorInputs[1].text.value,
+                background: colorInputs[2].text.value,
+                link: colorInputs[3].text.value,
+                text: colorInputs[4].text.value,
+                darkBackground: colorInputs[5].text.value
+            },
+            fontFamily: fontFamilySelect.value,
+            boardName: boardNameInput.value,
+            boardDescription: boardDescriptionInput.value
+        };
+    }
+
+    function loadSavedSettingsToDropdown() {
+        const savedSettings = JSON.parse(localStorage.getItem('savedSettings') || '{}');
+        savedSettingsDropdown.innerHTML = '<option value="">Select saved settings</option>';
+        for (const settingName in savedSettings) {
+            const option = document.createElement('option');
+            option.value = settingName;
+            option.textContent = settingName;
+            savedSettingsDropdown.appendChild(option);
+        }
     }
 
     // Initial update
