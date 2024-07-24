@@ -2,12 +2,19 @@
     --primary-color: #ff4b01;
     --secondary-color: #faa000;
     --font-family: Arial, sans-serif;
+    --background-color: #ffffff;
+    --link-color: #0000ff;
 }
 
 body, html {
     margin: 0;
     padding: 0;
     font-family: var(--font-family);
+    background-color: var(--background-color);
+}
+
+a {
+    color: var(--link-color);
 }
 
 .container {
