@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'mood_board_settings.json';
+        const fileName = `${boardNameInput.value.replace(/\s+/g, '_').toLowerCase()}_mood_board_settings.json`;
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
