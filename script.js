@@ -105,8 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
         URL.revokeObjectURL(url);
     }
 
-    exportButton.addEventListener('click', exportSettings);
-
     function importSettings(event) {
         const file = event.target.files[0];
         if (file) {
@@ -123,6 +121,10 @@ document.addEventListener('DOMContentLoaded', function () {
             reader.readAsText(file);
         }
     }
+
+    exportButton.addEventListener('click', exportSettings);
+    importButton.addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', importSettings);
 
     function applyImportedSettings(settings) {
         // Apply color settings
