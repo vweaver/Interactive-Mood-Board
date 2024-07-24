@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const boardNameInput = document.getElementById('board-name-control');
     const boardDescriptionInput = document.getElementById('board-description-control');
     const exportButton = document.getElementById('export-settings');
+    const importButton = document.getElementById('import-settings-btn');
+    const importInput = document.getElementById('import-settings');
 
     function exportSettings() {
         const settings = {
@@ -42,6 +44,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     exportButton.addEventListener('click', exportSettings);
+
+    function importSettings(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const settings = JSON.parse(e.target.result);
+                    applyImportedSettings(settings);
+                } catch (error) {
+                    console.error('Error parsing JSON:', error);
+                    alert('Error importing settings. Please make sure the file is a valid JSON.');
+                }
+            };
+            reader.readAsText(file);
+        }
+    }
+
+    function applyImportedSettings(settings) {
+        // Apply color settings
+        colorInputs[0].text.value = settings.colors.primary;
+        colorInputs[1].text.value = settings.colors.secondary;
+        colorInputs[2].text.value = settings.colors.background;
+        colorInputs[3].text.value = settings.colors.link;
+        colorInputs[4].text.value = settings.colors.text;
+        colorInputs[5].text.value = settings.colors.darkBackground;
+
+        // Apply font family
+        fontFamilySelect.value = settings.fontFamily;
+
+        // Apply board info
+        boardNameInput.value = settings.boardName;
+        boardDescriptionInput.value = settings.boardDescription;
+
+        // Update all styles and info
+        updateAll();
+    }
+
+    importButton.addEventListener('click', () => importInput.click());
+    importInput.addEventListener('change', importSettings);
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].text.value;
