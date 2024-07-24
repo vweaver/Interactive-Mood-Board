@@ -11,7 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const closeFlyoutBtn = document.getElementById('close-flyout');
 
     openFlyoutBtn.addEventListener('click', () => {
-        controlsFlyout.classList.remove('-translate-x-full');
+        if (controlsFlyout.classList.contains('-translate-x-full')) {
+            controlsFlyout.classList.remove('-translate-x-full');
+        } else {
+            controlsFlyout.classList.add('-translate-x-full');
+        }
     });
 
     closeFlyoutBtn.addEventListener('click', () => {
