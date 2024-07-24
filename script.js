@@ -11,6 +11,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const body = document.body;
     const boardNameInput = document.getElementById('board-name-control');
     const boardDescriptionInput = document.getElementById('board-description-control');
+    const exportButton = document.getElementById('export-settings');
+
+    function exportSettings() {
+        const settings = {
+            colors: {
+                primary: colorInputs[0].text.value,
+                secondary: colorInputs[1].text.value,
+                background: colorInputs[2].text.value,
+                link: colorInputs[3].text.value,
+                text: colorInputs[4].text.value,
+                darkBackground: colorInputs[5].text.value
+            },
+            fontFamily: fontFamilySelect.value,
+            boardName: boardNameInput.value,
+            boardDescription: boardDescriptionInput.value
+        };
+
+        const jsonString = JSON.stringify(settings, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'mood_board_settings.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    exportButton.addEventListener('click', exportSettings);
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].text.value;
