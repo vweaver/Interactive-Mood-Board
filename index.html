@@ -55,13 +55,26 @@
                 </select>
             </div>
         </div>
-        <div class="flex-grow p-5">
-            <h1 class="text-3xl font-bold mb-4">Interactive Mood Board</h1>
-            <div id="primary-color-sample" class="w-full h-12 mb-2 flex items-center justify-center text-white">Primary Color</div>
-            <div id="secondary-color-sample" class="w-full h-12 mb-2 flex items-center justify-center text-white">Secondary Color</div>
-            <p id="sample-text" class="mb-2">This is a sample paragraph to demonstrate the chosen font.</p>
-            <button id="sample-button" class="px-4 py-2 text-white cursor-pointer">Sample Button</button>
-            <p class="mt-2">This is a <a href="#" id="sample-link">sample link</a> to demonstrate the link color.</p>
+        <div class="flex-grow flex flex-col">
+            <nav class="bg-gray-800 text-white p-4">
+                <div class="container mx-auto">
+                    <h1 class="text-2xl font-bold">Interactive Mood Board</h1>
+                </div>
+            </nav>
+            
+            <main class="flex-grow p-5">
+                <div id="primary-color-sample" class="w-full h-12 mb-2 flex items-center justify-center text-white">Primary Color</div>
+                <div id="secondary-color-sample" class="w-full h-12 mb-2 flex items-center justify-center text-white">Secondary Color</div>
+                <p id="sample-text" class="mb-2">This is a sample paragraph to demonstrate the chosen font.</p>
+                <button id="sample-button" class="px-4 py-2 text-white cursor-pointer">Sample Button</button>
+                <p class="mt-2">This is a <a href="#" id="sample-link">sample link</a> to demonstrate the link color.</p>
+            </main>
+            
+            <footer class="bg-gray-800 text-white p-4 mt-auto">
+                <div class="container mx-auto text-center">
+                    <p>&copy; 2023 Interactive Mood Board. All rights reserved.</p>
+                </div>
+            </footer>
         </div>
     </div>
     <script src="script.js"></script>
