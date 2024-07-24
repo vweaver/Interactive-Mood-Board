@@ -1,23 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const primaryColorInput = document.getElementById('primary-color');
-    const secondaryColorInput = document.getElementById('secondary-color');
+    const colorInputs = [
+        { color: document.getElementById('primary-color'), text: document.getElementById('primary-color-text') },
+        { color: document.getElementById('secondary-color'), text: document.getElementById('secondary-color-text') },
+        { color: document.getElementById('background-color'), text: document.getElementById('background-color-text') },
+        { color: document.getElementById('link-color'), text: document.getElementById('link-color-text') }
+    ];
     const fontFamilySelect = document.getElementById('font-family');
-    const backgroundColorInput = document.getElementById('background-color');
-    const linkColorInput = document.getElementById('link-color');
 
     function updateStyles() {
-        document.documentElement.style.setProperty('--primary-color', primaryColorInput.value);
-        document.documentElement.style.setProperty('--secondary-color', secondaryColorInput.value);
+        document.documentElement.style.setProperty('--primary-color', colorInputs[0].color.value);
+        document.documentElement.style.setProperty('--secondary-color', colorInputs[1].color.value);
+        document.documentElement.style.setProperty('--background-color', colorInputs[2].color.value);
+        document.documentElement.style.setProperty('--link-color', colorInputs[3].color.value);
         document.documentElement.style.setProperty('--font-family', fontFamilySelect.value);
-        document.documentElement.style.setProperty('--background-color', backgroundColorInput.value);
-        document.documentElement.style.setProperty('--link-color', linkColorInput.value);
     }
 
-    primaryColorInput.addEventListener('input', updateStyles);
-    secondaryColorInput.addEventListener('input', updateStyles);
+    function updateColorInput(colorInput, textInput) {
+        colorInput.value = textInput.value;
+        updateStyles();
+    }
+
+    function updateTextInput(colorInput, textInput) {
+        textInput.value = colorInput.value;
+    }
+
+    colorInputs.forEach(input => {
+        input.color.addEventListener('input', () => {
+            updateTextInput(input.color, input.text);
+            updateStyles();
+        });
+        input.text.addEventListener('input', () => updateColorInput(input.color, input.text));
+    });
+
     fontFamilySelect.addEventListener('change', updateStyles);
-    backgroundColorInput.addEventListener('input', updateStyles);
-    linkColorInput.addEventListener('input', updateStyles);
 
     // Initial update
     updateStyles();

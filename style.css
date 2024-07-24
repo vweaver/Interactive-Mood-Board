@@ -46,6 +46,20 @@ input[type="color"], select {
     width: 100%;
 }
 
+.color-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.color-input-group input[type="color"] {
+    width: 50%;
+}
+
+.color-input-group input[type="text"] {
+    width: 50%;
+    padding: 2px 5px;
+}
+
 .color-sample {
     width: 100%;
     height: 50px;
