@@ -11,6 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const sampleText = document.getElementById('sample-text');
     const sampleButton = document.getElementById('sample-button');
     const sampleLink = document.getElementById('sample-link');
+    const boardNameInput = document.getElementById('board-name');
+    const boardDescriptionInput = document.getElementById('board-description');
+    const boardNameDisplay = document.querySelector('.bg-white h2');
+    const boardDescriptionDisplay = document.getElementById('sample-text');
 
     function updateStyles() {
         body.style.backgroundColor = colorInputs[2].color.value;
@@ -95,4 +99,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial update
     updateStyles();
+
+    function updateBoardInfo() {
+        boardNameDisplay.textContent = boardNameInput.value;
+        boardDescriptionDisplay.textContent = boardDescriptionInput.value;
+    }
+
+    boardNameInput.addEventListener('input', updateBoardInfo);
+    boardDescriptionInput.addEventListener('input', updateBoardInfo);
+
+    // Initial update for board info
+    updateBoardInfo();
 });
