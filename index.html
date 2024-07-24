@@ -1,231 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Mood Board</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Oswald:wght@400;700&family=Raleway:wght@400;700&family=Nunito:wght@400;700&family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Source+Sans+Pro:wght@400;700&family=Oswald:wght@400;700&family=Raleway:wght@400;700&family=Nunito:wght@400;700&family=Playfair+Display:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body class="bg-white text-black overflow-hidden">
     <div class="flex flex-col lg:flex-row h-screen">
-        <div id="controls-flyout" class="fixed inset-y-0 left-0 z-50 w-72 bg-gray-100 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:w-72 lg:flex-shrink-0">
+        <div id="controls-flyout"
+            class="fixed inset-y-0 left-0 z-50 w-72 bg-gray-100 transform -translate-x-full transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:w-72 lg:flex-shrink-0">
             <button id="close-flyout" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 lg:hidden">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
             </button>
             <div class="p-4 overflow-y-auto h-full">
-            <h2 class="text-xl font-bold mb-4">Controls</h2>
-            <div class="space-y-4">
-                <div class="bg-white p-3 rounded shadow">
-                    <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleSection('colors-section')">
-                        Colors
-                        <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                        </svg>
-                    </h3>
-                    <div id="colors-section" class="space-y-4 hidden">
-                        <div>
-                            <label class="block text-sm mb-1">Primary:</label>
-                            <div id="primary-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="primary-color-text" value="#ff4b01" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="primary-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#ef4444">Red</option>
-                                    <option value="#f97316">Orange</option>
-                                    <option value="#eab308">Yellow</option>
-                                    <option value="#22c55e">Green</option>
-                                    <option value="#3b82f6">Blue</option>
-                                    <option value="#a855f7">Purple</option>
-                                    <option value="#ec4899">Pink</option>
-                                </select>
+                <h2 class="text-xl font-bold mb-4">Controls</h2>
+                <div class="space-y-4">
+                    <div class="bg-white p-3 rounded shadow">
+                        <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center"
+                            onclick="toggleSection('colors-section')">
+                            Colors
+                            <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </h3>
+                        <div id="colors-section" class="space-y-4 hidden">
+                            <div>
+                                <label class="block text-sm mb-1">Primary:</label>
+                                <div id="primary-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="primary-color-text" value="#ff4b01" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="primary-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#ef4444">Red</option>
+                                        <option value="#f97316">Orange</option>
+                                        <option value="#eab308">Yellow</option>
+                                        <option value="#22c55e">Green</option>
+                                        <option value="#3b82f6">Blue</option>
+                                        <option value="#a855f7">Purple</option>
+                                        <option value="#ec4899">Pink</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Secondary:</label>
+                                <div id="secondary-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="secondary-color-text" value="#faa000" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="secondary-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#ef4444">Red</option>
+                                        <option value="#f97316">Orange</option>
+                                        <option value="#eab308">Yellow</option>
+                                        <option value="#22c55e">Green</option>
+                                        <option value="#3b82f6">Blue</option>
+                                        <option value="#a855f7">Purple</option>
+                                        <option value="#ec4899">Pink</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Background:</label>
+                                <div id="background-color-swatch"
+                                    class="w-full h-8 rounded cursor-pointer border border-gray-300"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="background-color-text" value="#ffffff" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="background-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#ffffff">White</option>
+                                        <option value="#f3f4f6">Gray 100</option>
+                                        <option value="#e5e7eb">Gray 200</option>
+                                        <option value="#d1d5db">Gray 300</option>
+                                        <option value="#9ca3af">Gray 400</option>
+                                        <option value="#6b7280">Gray 500</option>
+                                        <option value="#4b5563">Gray 600</option>
+                                        <option value="#374151">Gray 700</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Dark BG:</label>
+                                <div id="dark-background-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="dark-background-color-text" value="#333333" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="dark-background-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#000000">Black</option>
+                                        <option value="#111827">Gray 900</option>
+                                        <option value="#1f2937">Gray 800</option>
+                                        <option value="#374151">Gray 700</option>
+                                        <option value="#4b5563">Gray 600</option>
+                                        <option value="#6b7280">Gray 500</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Link:</label>
+                                <div id="link-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="link-color-text" value="#0000ff" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="link-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#3b82f6">Blue 500</option>
+                                        <option value="#2563eb">Blue 600</option>
+                                        <option value="#1d4ed8">Blue 700</option>
+                                        <option value="#1e40af">Blue 800</option>
+                                        <option value="#1e3a8a">Blue 900</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm mb-1">Text:</label>
+                                <div id="text-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
+                                <div class="mt-1 hidden color-details">
+                                    <input type="text" id="text-color-text" value="#000000" maxlength="7"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                    <select id="text-color-tailwind"
+                                        class="w-full px-1 py-0.5 text-xs border rounded mt-1">
+                                        <option value="">Custom</option>
+                                        <option value="#000000">Black</option>
+                                        <option value="#111827">Gray 900</option>
+                                        <option value="#1f2937">Gray 800</option>
+                                        <option value="#374151">Gray 700</option>
+                                        <option value="#4b5563">Gray 600</option>
+                                        <option value="#6b7280">Gray 500</option>
+                                        <option value="#9ca3af">Gray 400</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm mb-1">Secondary:</label>
-                            <div id="secondary-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="secondary-color-text" value="#faa000" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="secondary-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#ef4444">Red</option>
-                                    <option value="#f97316">Orange</option>
-                                    <option value="#eab308">Yellow</option>
-                                    <option value="#22c55e">Green</option>
-                                    <option value="#3b82f6">Blue</option>
-                                    <option value="#a855f7">Purple</option>
-                                    <option value="#ec4899">Pink</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm mb-1">Background:</label>
-                            <div id="background-color-swatch" class="w-full h-8 rounded cursor-pointer border border-gray-300"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="background-color-text" value="#ffffff" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="background-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#ffffff">White</option>
-                                    <option value="#f3f4f6">Gray 100</option>
-                                    <option value="#e5e7eb">Gray 200</option>
-                                    <option value="#d1d5db">Gray 300</option>
-                                    <option value="#9ca3af">Gray 400</option>
-                                    <option value="#6b7280">Gray 500</option>
-                                    <option value="#4b5563">Gray 600</option>
-                                    <option value="#374151">Gray 700</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm mb-1">Dark BG:</label>
-                            <div id="dark-background-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="dark-background-color-text" value="#333333" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="dark-background-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#000000">Black</option>
-                                    <option value="#111827">Gray 900</option>
-                                    <option value="#1f2937">Gray 800</option>
-                                    <option value="#374151">Gray 700</option>
-                                    <option value="#4b5563">Gray 600</option>
-                                    <option value="#6b7280">Gray 500</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm mb-1">Link:</label>
-                            <div id="link-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="link-color-text" value="#0000ff" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="link-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#3b82f6">Blue 500</option>
-                                    <option value="#2563eb">Blue 600</option>
-                                    <option value="#1d4ed8">Blue 700</option>
-                                    <option value="#1e40af">Blue 800</option>
-                                    <option value="#1e3a8a">Blue 900</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-sm mb-1">Text:</label>
-                            <div id="text-color-swatch" class="w-full h-8 rounded cursor-pointer"></div>
-                            <div class="mt-1 hidden color-details">
-                                <input type="text" id="text-color-text" value="#000000" maxlength="7" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                <select id="text-color-tailwind" class="w-full px-1 py-0.5 text-xs border rounded mt-1">
-                                    <option value="">Custom</option>
-                                    <option value="#000000">Black</option>
-                                    <option value="#111827">Gray 900</option>
-                                    <option value="#1f2937">Gray 800</option>
-                                    <option value="#374151">Gray 700</option>
-                                    <option value="#4b5563">Gray 600</option>
-                                    <option value="#6b7280">Gray 500</option>
-                                    <option value="#9ca3af">Gray 400</option>
+                    </div>
+                    <div class="bg-white p-3 rounded shadow">
+                        <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center"
+                            onclick="toggleSection('typography-section')">
+                            Typography
+                            <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </h3>
+                        <div id="typography-section" class="space-y-2 hidden">
+                            <div>
+                                <label for="font-family" class="block text-sm mb-1">Font Family:</label>
+                                <select id="font-family" class="w-full px-2 py-1 border rounded text-sm">
+                                    <option value="Arial, sans-serif">Arial</option>
+                                    <option value="'Helvetica Neue', Helvetica, sans-serif">Helvetica Neue</option>
+                                    <option value="'Roboto', sans-serif">Roboto</option>
+                                    <option value="'Open Sans', sans-serif">Open Sans</option>
+                                    <option value="'Lato', sans-serif">Lato</option>
+                                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                                    <option value="'Poppins', sans-serif">Poppins</option>
+                                    <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
+                                    <option value="'Oswald', sans-serif">Oswald</option>
+                                    <option value="'Raleway', sans-serif">Raleway</option>
+                                    <option value="'Nunito', sans-serif">Nunito</option>
+                                    <option value="'Playfair Display', serif">Playfair Display</option>
+                                    <option value="'Merriweather', serif">Merriweather</option>
+                                    <option value="'Times New Roman', serif">Times New Roman</option>
+                                    <option value="'Courier New', monospace">Courier New</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded shadow">
-                    <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleSection('typography-section')">
-                        Typography
-                        <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                        </svg>
-                    </h3>
-                    <div id="typography-section" class="space-y-2 hidden">
-                        <div>
-                            <label for="font-family" class="block text-sm mb-1">Font Family:</label>
-                            <select id="font-family" class="w-full px-2 py-1 border rounded text-sm">
-                                <option value="Arial, sans-serif">Arial</option>
-                                <option value="'Helvetica Neue', Helvetica, sans-serif">Helvetica Neue</option>
-                                <option value="'Roboto', sans-serif">Roboto</option>
-                                <option value="'Open Sans', sans-serif">Open Sans</option>
-                                <option value="'Lato', sans-serif">Lato</option>
-                                <option value="'Montserrat', sans-serif">Montserrat</option>
-                                <option value="'Poppins', sans-serif">Poppins</option>
-                                <option value="'Source Sans Pro', sans-serif">Source Sans Pro</option>
-                                <option value="'Oswald', sans-serif">Oswald</option>
-                                <option value="'Raleway', sans-serif">Raleway</option>
-                                <option value="'Nunito', sans-serif">Nunito</option>
-                                <option value="'Playfair Display', serif">Playfair Display</option>
-                                <option value="'Merriweather', serif">Merriweather</option>
-                                <option value="'Times New Roman', serif">Times New Roman</option>
-                                <option value="'Courier New', monospace">Courier New</option>
-                            </select>
+                    <div class="bg-white p-3 rounded shadow">
+                        <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center"
+                            onclick="toggleSection('board-info-section')">
+                            Board Info
+                            <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor"
+                                viewBox="0 0 20 20">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </h3>
+                        <div id="board-info-section" class="space-y-2 hidden">
+                            <div>
+                                <label for="board-name-control" class="block text-sm mb-1">Board Name:</label>
+                                <input type="text" id="board-name-control" value="Board Name"
+                                    class="w-full px-2 py-1 border rounded text-sm">
+                            </div>
+                            <div>
+                                <label for="board-description-control" class="block text-sm mb-1">Board
+                                    Description:</label>
+                                <textarea id="board-description-control" rows="3"
+                                    class="w-full px-2 py-1 border rounded text-sm">This is a short description of the mood board. It provides a brief overview of the board's theme, purpose, or content.</textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="bg-white p-3 rounded shadow">
-                    <h3 class="font-semibold mb-2 cursor-pointer flex justify-between items-center" onclick="toggleSection('board-info-section')">
-                        Board Info
-                        <svg class="w-4 h-4 transform transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                        </svg>
-                    </h3>
-                    <div id="board-info-section" class="space-y-2 hidden">
-                        <div>
-                            <label for="board-name-control" class="block text-sm mb-1">Board Name:</label>
-                            <input type="text" id="board-name-control" value="Board Name" class="w-full px-2 py-1 border rounded text-sm">
-                        </div>
-                        <div>
-                            <label for="board-description-control" class="block text-sm mb-1">Board Description:</label>
-                            <textarea id="board-description-control" rows="3" class="w-full px-2 py-1 border rounded text-sm">This is a short description of the mood board. It provides a brief overview of the board's theme, purpose, or content.</textarea>
-                        </div>
+                    <div class="bg-white p-3 rounded shadow mt-4">
+                        <button id="export-settings"
+                            class="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mb-2">Export
+                            Settings</button>
+                        <input type="file" id="import-settings" accept=".json" class="hidden">
+                        <button id="import-settings-btn"
+                            class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Import
+                            Settings</button>
                     </div>
                 </div>
-                <div class="bg-white p-3 rounded shadow mt-4">
-                    <button id="export-settings" class="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 mb-2">Export Settings</button>
-                    <input type="file" id="import-settings" accept=".json" class="hidden">
-                    <button id="import-settings-btn" class="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Import Settings</button>
-                </div>
-            </div>
             </div>
         </div>
         <div class="flex-grow flex flex-col overflow-hidden">
+
             <nav class="bg-gray-800 text-white p-4 sticky top-0 z-10">
-            <div class="container mx-auto flex justify-between items-center">
-                <h1 class="text-2xl font-bold">Interactive Mood Board</h1>
-                <button id="open-flyout" class="text-white lg:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-            
+                <div class="container mx-auto flex justify-between items-center">
+                    <h1 class="text-2xl font-bold">Interactive Mood Board</h1>
+                    <button id="open-flyout" class="text-white lg:hidden">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+
             <main class="flex-grow p-5 overflow-y-auto">
                 <div class="container mx-auto max-w-6xl">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <div id="board-details" class="bg-white p-4 shadow-md">
                             <h2 id="board-title" class="text-2xl font-bold mb-2 board-name">Board Name</h2>
                             <hr class="mb-2">
-                            <p id="board-description" class="mb-2 board-description">This is a short description of the mood board. It provides a brief overview of the board's theme, purpose, or content.</p>
+                            <p id="board-description" class="mb-2 board-description">This is a short description of the
+                                mood board. It provides a brief overview of the board's theme, purpose, or content.</p>
                             <a id="board-link" href="#board-link" class="inline-block">View Board</a>
                         </div>
                         <div class="bg-gray-100 p-4 flex items-center justify-center">
-                            <div id="primary-color-sample" class="w-32 h-32 rounded-full flex items-center justify-center text-white">Logo</div>
+                            <div id="primary-color-sample"
+                                class="w-32 h-32 rounded-full flex items-center justify-center text-white">Logo</div>
                         </div>
                         <div id="dark-bg-section" class="p-4 flex items-center justify-center">
-                            <div id="primary-on-dark-sample" class="w-32 h-32 rounded-full flex items-center justify-center text-white">Logo</div>
+                            <div id="primary-on-dark-sample"
+                                class="w-32 h-32 rounded-full flex items-center justify-center text-white">Logo</div>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-white p-4 shadow-md">
                             <h2 class="text-2xl font-bold mb-2">Main Headline</h2>
                             <h3 class="text-xl mb-4">Subheadline goes here</h3>
-                            <p class="mb-2">This is the first paragraph of text. It includes an <a href="#" class="text-blue-600 hover:underline">inline link</a> to demonstrate how links appear within the content.</p>
-                            <p class="mb-4">Here's a second paragraph with another <a href="#" class="text-blue-600 hover:underline">inline link</a> to show consistency in link styling throughout the content.</p>
+                            <p class="mb-2">This is the first paragraph of text. It includes an <a href="#"
+                                    class="text-blue-600 hover:underline">inline link</a> to demonstrate how links
+                                appear within the content.</p>
+                            <p class="mb-4">Here's a second paragraph with another <a href="#"
+                                    class="text-blue-600 hover:underline">inline link</a> to show consistency in link
+                                styling throughout the content.</p>
                             <div class="flex space-x-4 mb-6">
-                                <button id="primary-button" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Primary</button>
-                                <button id="secondary-button" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Secondary</button>
-                                <button id="outline-button" class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-100">Outline</button>
+                                <button id="primary-button"
+                                    class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Primary</button>
+                                <button id="secondary-button"
+                                    class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Secondary</button>
+                                <button id="outline-button"
+                                    class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-100">Outline</button>
                             </div>
                             <div class="mt-6">
                                 <h4 class="text-lg font-semibold mb-2">Text Styles</h4>
-                                <p class="mb-2">This paragraph demonstrates various <strong>text styles</strong>. You can use <em>italic</em> for subtle emphasis, <u>underline</u> for highlighting, <span class="line-through">strikethrough</span> for removed content, <span class="text-sm">small text</span> for less important info, and <span class="text-lg">large text</span> for attention.</p>
+                                <p class="mb-2">This paragraph demonstrates various <strong>text styles</strong>. You
+                                    can use <em>italic</em> for subtle emphasis, <u>underline</u> for highlighting,
+                                    <span class="line-through">strikethrough</span> for removed content, <span
+                                        class="text-sm">small text</span> for less important info, and <span
+                                        class="text-lg">large text</span> for attention.
+                                </p>
                             </div>
                         </div>
                         <div class="bg-white p-4 shadow-md">
@@ -243,7 +300,8 @@
                                         <p id="secondary-hex" class="text-xs"></p>
                                     </div>
                                     <div class="text-center">
-                                        <div id="light-bg-swatch" class="w-16 h-16 rounded-full border border-gray-300 mb-2"></div>
+                                        <div id="light-bg-swatch"
+                                            class="w-16 h-16 rounded-full border border-gray-300 mb-2"></div>
                                         <p class="text-sm font-semibold">Background</p>
                                         <p id="background-hex" class="text-xs"></p>
                                     </div>
@@ -271,14 +329,15 @@
                     </div>
                 </div>
             </main>
-            
+
             <footer class="bg-gray-800 text-white p-4 mt-auto">
                 <div class="container mx-auto text-center">
-                    <p>&copy; 2023 Interactive Mood Board. All rights reserved.</p>
+                    <p>&copy; 2024 Interactive Mood Board. All rights reserved.</p>
                 </div>
             </footer>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
