@@ -153,6 +153,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     isImporting = false;
                 }
             };
+            reader.onerror = function(e) {
+                console.error('Error reading file:', e);
+                alert('Error reading the file. Please try again.');
+                isImporting = false;
+            };
             reader.readAsText(file);
         } else {
             console.log('No file selected');
