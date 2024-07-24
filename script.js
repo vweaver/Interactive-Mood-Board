@@ -129,6 +129,8 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
+    let isImporting = false;
+
     function importSettings(event) {
         console.log('importSettings function called', event);
         if (isImporting) {
